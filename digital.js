@@ -8,7 +8,7 @@ let input = document.querySelector("#passenger-name");
 let reminderTxt = document.querySelector("#reminder1");
 let container = document.querySelector(".container");// bara för att kunna se div-en på konsollen med devtools
 let buttonList = [addToQBtn,vipBtn,removeFirst];// en array som innheåller alla knappar.
-
+let passengerNames = [];
 
 console.log(passengerList.childElementCount); // testräknar childElements i passengerList
 // en if-sats som styr reminderTxts synlighet.
@@ -20,10 +20,18 @@ if(passengerList.childElementCount === 0){
 buttonList.forEach((Btn) => {
   Btn.addEventListener("click",(e) =>{ // beroende på vad man klickar på kommer något att hända
     let passenger = input.value; // det som skrivs kommer att sparas i passenger när man klickar
-    if(passenger !== ""){ // om värdet inte är tomt kommer if-satsen att köras
+
+    // kollar om namnet redan existerar i arrayen passengerNames och ger en alert om det gör det
+    if(passengerNames.includes(removeSpaces(input.value.toLowerCase())) && (Btn === vipBtn || Btn === addToQBtn)){
+      alert("This passenger is already in queue");
+      input.value = "";
+    }
+    else if(passenger !== ""){ // om värdet inte är tomt kommer if-satsen att köras
+      // pushar inmatade värdet utan space & i gemener i passengerNames
+      passengerNames.push(removeSpaces(input.value.toLowerCase()));
       let newPassenger = document.createElement("li");
       //för att skapa en lämplig id, ersätts alla tomma knapptryckningar med en -, det kan finnas bättre sätt att hantera detta.
-      newPassenger.id = passenger.toLowerCase().replace(' ','-');
+      newPassenger.id = removeSpaces(passenger.toLowerCase().replace(' ','-'));
       newPassenger.innerText = passenger;
       
       // console.log(passenger);
@@ -67,9 +75,15 @@ buttonList.forEach((Btn) => {
     // denna if-else sats för att säkerställa att meddelandet visas när ett event har skett.
     if(passengerList.childElementCount === 0){
       reminderTxt.style.display = "block";
+      passengerNames = []; // rensar arrayen när passengerlist är tom
     }
     else{
       reminderTxt.style.display = "none";
+    }
+
+    // funktion för att ta bort alla space-tryckningar i en string
+    function removeSpaces(text){
+      return text.split(" ").join("");
     }
 
   })
