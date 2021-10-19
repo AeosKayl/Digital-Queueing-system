@@ -27,14 +27,20 @@ buttonList.forEach((Btn) => {
       newPassenger.innerText = passenger;
       
       // console.log(passenger);
+      // om man matar in bara tomma rader eller space, alerten visas
+      if(!input.value.trim() || !input.value){
+        alert("An empty space is not a person and empty spaces can not be counted as persons.");
+        input.value = "";
+        return false;
+      }
 
       if(Btn === addToQBtn){
-        console.log("this queue button works");
+        console.log("this queue button works");// knapp test
         passengerList.append(newPassenger);
         input.value = "";
       }
       else if(Btn === vipBtn){
-        console.log("this fast-track button works");
+        console.log("this fast-track button works");// knapp test
         passengerList.prepend(newPassenger);
         input.value = "";
       }
@@ -52,7 +58,8 @@ buttonList.forEach((Btn) => {
     else{
       if(Btn === removeFirst && passengerList.childElementCount <1){
         alert("There is no one to check out.");
-      }else{
+      }
+      else{
         alert("Passenger name must be filled");
       }   
     }
