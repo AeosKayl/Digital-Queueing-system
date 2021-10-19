@@ -6,7 +6,7 @@ let removeFirst = document.querySelector("#checkout-button");
 let passengerList = document.querySelector(".passenger-list");
 let input = document.querySelector("#passenger-name");
 let reminderTxt = document.querySelector("#reminder1");
-let container = document.querySelector(".container");
+let container = document.querySelector(".container");// bara för att kunna se div-en på konsollen med devtools
 let buttonList = [addToQBtn,vipBtn,removeFirst];// en array som innheåller alla knappar.
 
 
@@ -44,6 +44,7 @@ buttonList.forEach((Btn) => {
         passengerList.prepend(newPassenger);
         input.value = "";
       }
+      // Else-if en här nedan funkar så länge input fältet är tomt, annars får man error
       // else if(Btn === removeFirst){
       //   console.log("this button works");
       //   passengerList.removeChild(newPassenger);
@@ -73,10 +74,3 @@ buttonList.forEach((Btn) => {
 
   })
 })
-
-// if(passengerList.childElementCount !== 0){
-//   reminderTxt.style.display = "none";
-// }
-// else{
-//   reminderTxt.style.display = "block";
-// }
