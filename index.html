@@ -15,9 +15,19 @@
     <label for="name">Enter passenger name:</label>
     <br>
     <input type="text" class="name" id="passenger-name" placeholder="e.g. John Doe">
-    <button class="button" id="queue-button">Place in queue</button>
-    <button class="button" id="vip-button">Place in fast track</button>
-    <button class="button"  id="checkout-button">Check out</button>
+    <div class="tooltip">
+      <button class="button" id="queue-button">Place in queue</button>
+      <span class="tooltiptext">Place last in the queue</span>
+    </div>
+    <div class="tooltip">
+      <button class="button" id="vip-button">Place in fast track</button>
+      <span class="tooltiptext">Place first in the queue</span>
+    </div>
+    <div class="tooltip">
+      <button class="button"  id="checkout-button">Check out</button>
+      <span class="tooltiptext">Checkout from queue</span>
+    </div>
+    
     <p class="reminder" id="reminder1">There’s currently no people standing in line</p>
     <ol class="passenger-list" id="pass-list">
     </ol>
